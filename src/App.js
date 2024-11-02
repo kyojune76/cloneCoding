@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import carimg from "./Casper.jpg";
+import React, { useState } from "react";
 
 function HyundaiLogo() {
+  const CarSlider = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+  };
   return (
     <First>
       <Top>
@@ -51,8 +55,11 @@ function HyundaiLogo() {
           </Lang>
         </Xecond>
       </Top>
-
-      <Carimg src={carimg} alt="car" />
+      <Baegyeoung>
+        <button></button>
+        background img={carimg};
+        <Carimg src={carimg} alt="car" />
+      </Baegyeoung>
     </First>
   );
 }
@@ -113,3 +120,4 @@ const Carimg = styled.img`
   width: 100%;
   height: 600px;
 `;
+const Baegyeoung = styled.div``;
