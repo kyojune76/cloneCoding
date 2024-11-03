@@ -1,10 +1,19 @@
 import styled from "styled-components";
 import carimg from "./Casper.jpg";
-import React, { useState } from "react";
+import carimg2 from "./Avante.jpg";
+import { useState } from "react";
 
 function HyundaiLogo() {
-  const CarSlider = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? carImages.length - 1 : prevIndex - 1
+    );
+  };
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === carImages.length ? 0 : prevIndex + 1
+    );
   };
   return (
     <First>
@@ -55,11 +64,14 @@ function HyundaiLogo() {
           </Lang>
         </Xecond>
       </Top>
-      <Baegyeoung>
-        <button></button>
-        background img={carimg};
-        <Carimg src={carimg} alt="car" />
-      </Baegyeoung>
+      <SliderContainer bgImage={carImages[currentIndex]}>
+        <Button onClick={handlePrev} position="left">
+          ◀️
+        </Button>
+        <Button onClick={handleNext} position="right">
+          ▶️
+        </Button>
+      </SliderContainer>
     </First>
   );
 }
@@ -114,10 +126,23 @@ const Lang = styled.select`
   border: none;
   cursor: pointer;
 `;
-const Carimg = styled.img`
-  align-items: center;
-  margin-top: 10px;
+
+const SliderContainer = styled.div`
   width: 100%;
-  height: 600px;
+  margin-top: 100px;
+  height: 500px;
+  background-image: url(${({ bgImage }) => bgImage});
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  position: relative;
 `;
-const Baegyeoung = styled.div``;
+const Button = styled.button`
+  position: absolute;
+  background: none;
+  cursor: pointer;
+  border: none;
+  ${({ position }) => position}:10px;
+`;
+const carImages = [carimg, carimg2];
